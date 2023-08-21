@@ -80,7 +80,7 @@ const Salaries = () => {
                       </select>
                     </div>
                     <div>
-                      <label for="uploadFile" class="form-label">
+                      <label for="uploadFile" className="form-label">
                         مرفق قائمة تمويل السداد
                       </label>
                       <input

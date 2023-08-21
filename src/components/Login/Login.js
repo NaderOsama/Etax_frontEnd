@@ -1,8 +1,8 @@
-import React from 'react'
-import './Login.css'
+import React from "react";
+import "./Login.css";
 import logo from "../../assets/logo/eTaxNewLogo.svg";
-import { Link } from 'react-router-dom';
-import InputLogin from '../InputLogin/InputLogin';
+import { Link } from "react-router-dom";
+import InputLogin from "../InputLogin/InputLogin";
 
 const Login = () => {
   return (
@@ -28,6 +28,6 @@ const Login = () => {
       </div>
     </>
   );
-}
+};
 
-export default Login
+export default Login;
