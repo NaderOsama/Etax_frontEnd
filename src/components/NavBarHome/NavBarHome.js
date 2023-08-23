@@ -1,7 +1,30 @@
-import React from "react";
 import logo from "../../assets/logo/eTaxNewLogo.svg";
 import ButtonHome from "../ButtonHome/ButtonHome";
 const NavBarHome = () => {
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://127.0.0.1:8000/api/logout", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`, // Include the token in the headers
+        },
+      });
+
+      if (response.ok) {
+        localStorage.removeItem("token");
+
+        // Logout successful
+        window.location.href = "/"; // Redirect to the home page or login page
+      } else {
+        // Handle logout error
+        console.error("Error logging out");
+      }
+    } catch (error) {
+      console.error("An error occurred during logout", error);
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="row justify-content-center">
@@ -31,7 +54,7 @@ const NavBarHome = () => {
               </a>
             </li>
             <form>
-              <ButtonHome title={"تسجيل الخروج"} HomeOrNot={"/"} />
+              <ButtonHome title={"تسجيل الخروج"} action={handleLogout} />
             </form>
           </ul>
         </div>

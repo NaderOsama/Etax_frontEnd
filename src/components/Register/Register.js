@@ -4,6 +4,7 @@ import logo from "../../assets/logo/eTaxNewLogo.svg";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -58,6 +59,11 @@ const Register = () => {
       errors.phonenumber = "رقم الهاتف غير صالح";
       isValid = false;
     }
+    if (formData.password !== formData.password_confirmation) {
+      errors.password_confirmation =
+        "كلمة المرور وتأكيد كلمة المرور غير متطابقين";
+      isValid = false;
+    }
 
     if (!isValid) {
       setValidationErrors(errors);
@@ -92,7 +98,7 @@ const Register = () => {
   return (
     <div className="login">
       <div className="d-flex">
-        <div className="col-lg-4">
+        <div className="col-lg-4 col-md-12">
           <div className="content-section">
             <div className="logo text-center">
               <img src={logo} alt="Logo" />
@@ -103,6 +109,9 @@ const Register = () => {
               تسجيل الدخول
             </Link>
 
+            {validationErrors.name && (
+              <p className="error-message">{validationErrors.name}</p>
+            )}
             <input
               type="text"
               name="name"
@@ -110,10 +119,10 @@ const Register = () => {
               value={formData.name}
               onChange={handleInputChange}
             />
-            {validationErrors.name && (
-              <p className="error-message">{validationErrors.name}</p>
-            )}
 
+            {validationErrors.email && (
+              <p className="error-message">{validationErrors.email}</p>
+            )}
             <input
               type="email"
               name="email"
@@ -121,8 +130,9 @@ const Register = () => {
               value={formData.email}
               onChange={handleInputChange}
             />
-            {validationErrors.email && (
-              <p className="error-message">{validationErrors.email}</p>
+
+            {validationErrors.password && (
+              <p className="error-message">{validationErrors.password}</p>
             )}
 
             <input
@@ -132,14 +142,16 @@ const Register = () => {
               value={formData.password}
               onChange={handleInputChange}
             />
-            {validationErrors.password && (
-              <p className="error-message">{validationErrors.password}</p>
-            )}
 
+            {validationErrors.password_confirmation && (
+              <p className="error-message">
+                {validationErrors.password_confirmation}
+              </p>
+            )}
             <input
               type="password"
               name="password_confirmation"
-              placeholder=" تأكيد كلمة المرور "
+              placeholder="تأكيد كلمة المرور"
               value={formData.password_confirmation}
               onChange={handleInputChange}
             />

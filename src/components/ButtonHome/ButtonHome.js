@@ -1,15 +1,20 @@
-import React from 'react';
-import './ButtonHome.css';
+import React from "react";
+import "./ButtonHome.css";
+import { Link } from "react-router-dom";
 const ButtonHome = (props) => {
   return (
     <>
-      <button className="btn btn-primary bg-button btn-log" type="submit">
-        <a className="text-white" aria-current="page" href={props.HomeOrNot}>
-          {props.title}
-        </a>
-      </button>
+      <Link
+        className="text-white btn btn-primary bg-button btn-log"
+        aria-current="page"
+        to={props.HomeOrNot}
+        type="submit"
+        onClick={props.action}
+      >
+        {props.title}
+      </Link>
     </>
   );
-}
+};
 
-export default ButtonHome
+export default ButtonHome;
