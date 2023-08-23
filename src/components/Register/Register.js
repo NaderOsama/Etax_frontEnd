@@ -156,6 +156,9 @@ const Register = () => {
               onChange={handleInputChange}
             />
 
+            {validationErrors.phonenumber && (
+              <p className="error-message">{validationErrors.phonenumber}</p>
+            )}
             <input
               type="tel"
               name="phonenumber"
@@ -163,9 +166,6 @@ const Register = () => {
               value={formData.phonenumber}
               onChange={handleInputChange}
             />
-            {validationErrors.phonenumber && (
-              <p className="error-message">{validationErrors.phonenumber}</p>
-            )}
 
             <button className="submit-button" onClick={handleRegister}>
               إنشاء حساب جديد

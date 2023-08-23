@@ -30,17 +30,21 @@ const Login = () => {
     let isValid = true;
     const errors = { ...validationErrors };
 
-    if (
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)
-    ) {
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
       errors.email = "البريد الإلكتروني غير صالح";
       isValid = false;
-    }
+  }
 
-    if (!isValid) {
-      setValidationErrors(errors);
-      return;
-    }
+  // Validate password field
+  if (formData.password.length < 6) {
+    errors.password = "كلمة المرور يجب أن تحتوي على ما لا يقل عن 6 أحرف";
+    isValid = false;
+  }
+
+  if (!isValid) {
+    setValidationErrors(errors);
+    return;
+  }
 
     try {
       const response = await fetch("http://127.0.0.1:8000/api/login", {
@@ -94,6 +98,9 @@ const Login = () => {
                 onChange={handleInputChange}
               />
 
+              {validationErrors.password && (
+                <p className="error-message">{validationErrors.password}</p>
+              )}
 
               <input
                 type="password"

@@ -22,8 +22,9 @@
 }
 
 .login .logo img {
-    width: 250px;
+    width: 220px;
     height: 95px;
+    padding: 15px;
 
 }
 

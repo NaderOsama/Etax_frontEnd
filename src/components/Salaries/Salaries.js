@@ -1,19 +1,27 @@
-import React from 'react'
-import salaryCard from '../../assets/request/Group349.png'
-import ButtonHome from '../ButtonHome/ButtonHome';
+import React, { useEffect, useState } from "react";
+import salaryCard from "../../assets/request/Group349.png";
+import ButtonHome from "../ButtonHome/ButtonHome";
+import { useParams } from "react-router-dom";
 const Salaries = () => {
+  const [services, setServices] = useState([]);
+  const params = useParams();
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:8000/api/service/${params.servicesID}`)
+      .then((res) => res.json())
+      .then((data) => setServices(data.results));
+    console.log(params.servicesID);
+  }, []);
+
   return (
-    <div className="salaries p-5">
+    <div className="salaries p-5" key={services.id}>
       <div className="containerr">
         <div className="row justify-content-between ">
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="content-salary-form">
               <div className="content-salary">
-                <h5>المرتبات و الاجور</h5>
-                <p>
-                  خدمة الإستعلام عن المرتبات و الأجور لدى الموطن من خلال
-                  منظومتنا المعتمدة من الضرائب المصرية
-                </p>
+                <h5>{services.name}</h5>
+                <p>{services.description}</p>
               </div>
               <div className="form-salary">
                 <div className="row">
@@ -22,13 +30,14 @@ const Salaries = () => {
                       <label for="cardTax" class="form-label">
                         رقم البطاقه الضريبية
                       </label>
+
                       <input
                         type="text"
                         id="cardTax"
                         name="cardTax"
                         className="form-control mt-1 mb-1"
                         aria-describedby="passwordHelpBlock"
-                        value={7826565656526}
+                        value={services.id}
                       />
                     </div>
                     <div>
@@ -105,6 +114,6 @@ const Salaries = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Salaries
+export default Salaries;

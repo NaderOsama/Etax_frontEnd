@@ -1,34 +1,30 @@
 import React, { useEffect, useState } from "react";
 import MainHeading from "../MainHeading/MainHeading";
-import axios from "axios";
 import "./Services.css";
 import { Link } from "react-router-dom";
 const Services = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get("/data-json/data.json");
-        setServices(response.data.services);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-    fetchData();
+    fetch("http://127.0.0.1:8000/api/services")
+      .then((response) => response.json())
+      .then((data) => setServices(data.results))
+      .catch((error) => console.error("Error fetching services:", error));
   }, []);
 
   const listservices = services.map((ser) => {
+    const cardClasses = ser.status === 0 ? "disabled-card" : "";
+
     return (
       <Link
-        className="col-lg-4 col-md-6 col-sm-12 p-3"
-        to={ser.routeService}
+        className={`col-lg-4 col-md-6 col-sm-12 p-3 ${cardClasses}`}
+        to={`/services/${ser.id} `}
         key={ser.id}
       >
-        <div className="card">
-          <h5 className="tiltle_services_card">{ser.tiltle_services_card}</h5>
-          <p className="body_services_card">{ser.bode_services_card}</p>
+        <div className={`card ${cardClasses}`}>
+          <h5 className="tiltle_services_card">{ser.name}</h5>
+          <p className="body_services_card">{ser.description}</p>
+          <span className="line"></span>
         </div>
       </Link>
     );

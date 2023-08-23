@@ -25,7 +25,7 @@ function App() {
         element={<PrivateRoute element={<WelcomePage />} />}
       />
       <Route
-        path="/salaries"
+        path="/services/:servicesID"
         element={<PrivateRoute element={<Request />} />}
       />
     </Routes>

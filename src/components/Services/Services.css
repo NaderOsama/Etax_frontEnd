@@ -1,12 +1,11 @@
-.services {
-      /* margin: 80px 0px; */
 
-
-}
 .services .card {
       border: 1px solid #002E6D4D;
       border-radius: 20px;
       padding: 20px;
+      position: relative;
+      transition: all 0.5s ease-in-out;
+      max-height: 200px;
 
 }
 
@@ -28,3 +27,23 @@
       color: #262626;
 
 }
+.services .card:hover .line  {
+    position: absolute;
+    width: 13px;
+    height: 100%;
+    background: var(--color-red);
+    right: 0px;
+    top: 0;
+    
+    border-end-start-radius: 100px;
+    border-start-start-radius: 100px;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.disabled-card {
+  opacity: 0.6; /* You can adjust the styling as needed */
+  pointer-events: none;
+  cursor: auto !important;
+}
+

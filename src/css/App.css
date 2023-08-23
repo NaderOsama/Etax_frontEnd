@@ -1,29 +1,7 @@
-@media (max-width: 768px) {
-    .login {
-        background-image: url(http://localhost:3000/static/media/MaskGroup5.cc3377f….png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100% !important;
-        background-position-x: 90%;
-}
-    .login .content-section {
-        max-width: 100%;
-        padding: 10px;
-    }
-    
-    .login .logo img {
-        max-width: 180px;
-    }
-    
-    .submit-button {
-        width: auto;
-    }
-}
-
 .error-message {
-      font-size: 12px;
-      font-family: sans-serif;
-      font-style: normal;
-      color: red!important ;
+    font-size: 10px;
+    font-family: sans-serif;
+    font-style: normal;
+    color: red!important ;
 
 }
